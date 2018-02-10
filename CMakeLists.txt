@@ -1,11 +1,16 @@
+cmake_minimum_required(VERSION 3.7)
+
 project(history-service)
-cmake_minimum_required(VERSION 2.8)
+
+set(CMAKE_CXX_STANDARD 14)
+set(QT_MIN_VERSION "5.7.0")
 
 find_package(ECM REQUIRED NO_MODULE)
 
-set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} "${CMAKE_SOURCE_DIR}/cmake")
 
-# Standard install paths
+find_package(Qt5 REQUIRED NO_MODULE COMPONENTS Core Quick Test Gui Widgets QuickControls2 Organizer)
+
 include(GNUInstallDirs)
 include(KDEInstallDirs)
 include(KDECMakeSettings)
@@ -18,7 +23,6 @@ include(CheckIncludeFile)
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 
-find_package(Qt5Core REQUIRED)
 find_package(Qt5DBus REQUIRED)
 find_package(Qt5Contacts REQUIRED)
 find_package(Qt5Qml)
@@ -26,9 +30,6 @@ find_package(Qt5Quick)
 find_package(Qt5Network REQUIRED)
 find_package(Qt5Test REQUIRED)
 find_package(LibPhoneNumber REQUIRED)
-
-include(qt5)
-
 
 
 find_package(PkgConfig REQUIRED)
