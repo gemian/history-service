@@ -74,9 +74,7 @@ MockTextChannel::MockTextChannel(MockConnection *conn, QStringList recipients, u
     baseChannel->plugInterface(Tp::AbstractChannelInterfacePtr::dynamicCast(mMessagesIface));
 
     // group stuff
-    mGroupIface = Tp::BaseChannelGroupInterface::create();
-    mGroupIface->setGroupFlags(Tp::ChannelGroupFlagCanAdd);
-    mGroupIface->setSelfHandle(conn->selfHandle());
+    mGroupIface = Tp::BaseChannelGroupInterface::create(Tp::ChannelGroupFlagCanAdd, conn->selfHandle());
     mGroupIface->setAddMembersCallback(Tp::memFun(this,&MockTextChannel::onAddMembers));
     mGroupIface->setRemoveMembersCallback(Tp::memFun(this,&MockTextChannel::onRemoveMembers));
     baseChannel->plugInterface(Tp::AbstractChannelInterfacePtr::dynamicCast(mGroupIface));
@@ -234,7 +232,7 @@ void MockTextChannel::addMembers(QStringList recipients)
             mMembers << handle;
         }
     }
-    mGroupIface->setMembers(mMembers, QVariantMap());
+    mGroupIface->addMembers(mMembers, mRecipients);
 }
 
 QStringList MockTextChannel::recipients() const
@@ -252,7 +250,7 @@ void MockTextChannel::onAddMembers(const Tp::UIntList &handles, const QString &m
     addMembers(mConnection->inspectHandles(Tp::HandleTypeContact, handles, error));
 }
 
-void MockTextChannel::onRemoveMembers(const Tp::UIntList &handles, const QString &message, uint reason, Tp::DBusError *error)
+void MockTextChannel::onRemoveMembers(const Tp::UIntList &handles, const QString &message, Tp::DBusError *error)
 {
     Q_FOREACH(uint handle, handles) {
         Q_FOREACH(const QString &recipient, mConnection->inspectHandles(Tp::HandleTypeContact, Tp::UIntList() << handle, error)) {
@@ -260,5 +258,5 @@ void MockTextChannel::onRemoveMembers(const Tp::UIntList &handles, const QString
         }
         mMembers.removeAll(handle);
     }
-    mGroupIface->setMembers(mMembers, QVariantMap());
+    mGroupIface->removeMembers(handles);
 }
