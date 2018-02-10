@@ -2,7 +2,8 @@ Source: history-service
 Section: libs
 Priority: optional
 Maintainer: Adam Boardman <adamboardman@gmail.com>
-Build-Depends: cmake,
+Build-Depends: cmake (>= 2.8.9),
+               extra-cmake-modules,
                dbus-test-runner,
                debhelper (>= 9),
                dconf-cli,
@@ -14,6 +15,7 @@ Build-Depends: cmake,
                pkg-config,
                python:any,
                qtchooser,
+               qt5-qmake,
                qtbase5-dev,
                qtdeclarative5-dev,
                qtpim5-dev,
