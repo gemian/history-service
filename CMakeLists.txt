@@ -9,7 +9,7 @@ find_package(ECM REQUIRED NO_MODULE)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} "${CMAKE_SOURCE_DIR}/cmake")
 
-find_package(Qt5 REQUIRED NO_MODULE COMPONENTS Core Quick Test Gui Widgets QuickControls2 Organizer)
+find_package(Qt5 REQUIRED NO_MODULE COMPONENTS Core Quick Test)
 
 include(GNUInstallDirs)
 include(KDEInstallDirs)
