@@ -4,6 +4,8 @@
 # Uncomment this to turn on verbose mode.
 #export DH_VERBOSE=1
 
+qmltestskip_architectures := arm64 powerpc s390x
+
 override_dh_install:
 	dh_install --fail-missing
 
