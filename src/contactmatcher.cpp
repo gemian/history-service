@@ -178,7 +178,6 @@ void ContactMatcher::onContactsAdded(QList<QContactId> ids)
 
 void ContactMatcher::onContactsChanged(QList<QContactId> ids, QList<QContactDetail::DetailType> types)
 {
-    qWarning() << "ContactMatcher::onContactsChanged";
     QList<QContact> contacts = mManager->contacts(ids);
 
     // walk through the list of requested phone numbers
