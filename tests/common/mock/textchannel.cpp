@@ -252,7 +252,11 @@ void MockTextChannel::onAddMembers(const Tp::UIntList &handles, const QString &m
     addMembers(mConnection->inspectHandles(Tp::HandleTypeContact, handles, error));
 }
 
+#if TP_QT_VERSION >= TP_QT_VERSION_CHECK(0, 9, 7)
 void MockTextChannel::onRemoveMembers(const Tp::UIntList &handles, const QString &message, uint reason, Tp::DBusError *error)
+#else
+void MockTextChannel::onRemoveMembers(const Tp::UIntList &handles, const QString &message, Tp::DBusError *error)
+#endif
 {
     Q_FOREACH(uint handle, handles) {
         Q_FOREACH(const QString &recipient, mConnection->inspectHandles(Tp::HandleTypeContact, Tp::UIntList() << handle, error)) {

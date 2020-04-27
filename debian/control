@@ -1,11 +1,11 @@
 Source: history-service
 Section: libs
 Priority: optional
-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-Build-Depends: cmake,
+Maintainer: Adam Boardman <adamboardman@gmail.com>
+Build-Depends: cmake (>= 2.8.9),
+               extra-cmake-modules,
                dbus-test-runner,
                debhelper (>= 9),
-               dh-translations,
                dconf-cli,
                gnome-keyring,
                libphonenumber-dev,
@@ -13,21 +13,18 @@ Build-Depends: cmake,
                libsqlite3-dev,
                libtelepathy-qt5-dev,
                pkg-config,
-               python:any,
-               qt5-default,
-               qtbase5-dev (>= 5.0),
-               qtdeclarative5-dev (>= 5.0),
-#              version 5.0~git... is not greater or equal 5.0, so leave it as 5
-               qtpim5-dev (>= 5),
+               python3:any,
+               qt5-qmake,
+               qtbase5-dev,
+               qtdeclarative5-dev,
+               qtpim5-dev,
                sqlite3,
                telepathy-mission-control-5,
                xvfb <!nocheck>,
-Standards-Version: 3.9.4
-Homepage: https://launchpad.net/history-service
-# If you aren't a member of ~phablet-team but need to upload packaging changes,
-# just go ahead.  ~phablet-team will notice and sync up the code again.
-Vcs-Bzr: https://code.launchpad.net/~phablet-team/history-service/trunk
-Vcs-Browser: https://bazaar.launchpad.net/~phablet-team/history-service/trunk/files
+               xauth,
+Standards-Version: 3.9.8
+Homepage: https://github.com/gemian/history-service
+Vcs-Git: https://github.com/gemian/history-service.git
 
 Package: history-service
 Architecture: any

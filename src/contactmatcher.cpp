@@ -173,7 +173,7 @@ void ContactMatcher::onContactsAdded(QList<QContactId> ids)
     }
 }
 
-void ContactMatcher::onContactsChanged(QList<QContactId> ids)
+void ContactMatcher::onContactsChanged(QList<QContactId> ids, QList<QContactDetail::DetailType> types)
 {
     QList<QContact> contacts = mManager->contacts(ids);
 

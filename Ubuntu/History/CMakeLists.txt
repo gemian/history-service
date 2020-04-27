@@ -40,6 +40,6 @@ target_link_libraries(history-qml
     historyservice
     )
 
-set(PLUGIN_DIR ${QT_INSTALL_QML}/Ubuntu/History)
+set(PLUGIN_DIR ${KDE_INSTALL_QMLDIR}/Ubuntu/History)
 install(TARGETS history-qml DESTINATION ${PLUGIN_DIR})
 install(FILES qmldir DESTINATION ${PLUGIN_DIR})
